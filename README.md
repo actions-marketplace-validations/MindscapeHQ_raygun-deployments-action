@@ -16,7 +16,7 @@ To use this action, include it in your GitHub workflow file:
 
 ```yaml
 - name: Run Raygun Deployment Action
-  uses: xenolightning/raygun-deployments-action@v1
+  uses: MindscapeHQ/raygun-deployments-action@v1
   with:
     personal-access-token: ${{ secrets.RAYGUN_PAT }}
     api-key: ${{ secrets.RAYGUN_API_KEY }}
@@ -63,7 +63,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run Raygun Deployment Action
         id: raygun_deployment
-        uses: xenolightning/raygun-deployments-action@v1
+        uses: MindscapeHQ/raygun-deployments-action@v1
         with:
           personal-access-token: ${{ secrets.RAYGUN_PAT }}
           api-key: ${{ secrets.RAYGUN_API_KEY }}
