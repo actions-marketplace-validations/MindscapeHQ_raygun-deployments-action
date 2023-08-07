@@ -1,5 +1,6 @@
 name: 'Raygun - Create Deployment'
 description: 'Notifies Raygun of a deployment/release'
+author: 'Raygun'
 branding:
   icon: 'zap'
   color: 'gray-dark'
