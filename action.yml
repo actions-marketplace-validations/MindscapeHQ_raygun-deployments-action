@@ -1,4 +1,4 @@
-name: 'Raygun Deployments'
+name: 'Raygun - Create Deployment'
 description: 'Notifies Raygun of a deployment/release'
 branding:
   icon: 'zap'
