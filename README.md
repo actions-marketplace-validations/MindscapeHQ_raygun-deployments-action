@@ -57,21 +57,22 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Run Raygun Deployment Action
-        id: raygun_deployment
+      - name: Generate the short SHA for the current commit
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      - name: Create Raygun Deployment
+        id: create_deployment
         uses: MindscapeHQ/raygun-deployments-action@v1
         with:
           personal-access-token: ${{ secrets.RAYGUN_PAT }}
           api-key: ${{ secrets.RAYGUN_API_KEY }}
-          version: '1.0.0'
-          ownerName: 'Your Name'
-          emailAddress: 'your-email@domain.com'
-          comment: 'Deployment comment'
-      - run: echo "Deployment [${{ steps.raygun_deployment.outputs.deploymentId }}] was created successfully 🎉"
+          version: ${{ steps.vars.outputs.sha_short }}
+          comment: ${{ github.event.head_commit.message }}
+      - run: echo "🎉 Deployment [${{ steps.create_deployment.outputs.deploymentId }}] was created successfully."
 ```
 
 In this example, the `personal-access-token` and `api-key` are stored as secrets in the repository, the `version` is your internal version, and the `ownerName` and `emailAddress` are hard-coded. Adjust these inputs as needed for your use case.
